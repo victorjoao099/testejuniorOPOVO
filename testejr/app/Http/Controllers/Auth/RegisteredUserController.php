@@ -37,6 +37,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('newsIndex', absolute: false));
+        return redirect(route('index.news', absolute: false));
     }
 }
