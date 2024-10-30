@@ -14,20 +14,20 @@ class NewsController extends Controller
     {
         $noticias = news::orderbyDesc('id')->get();
 
-        return view('noticias', ['noticias' => $noticias]);
+        return view('/News/NewsIndex', ['noticias' => $noticias]);
     }
 
     public function store(StorePost $request)
     {
 
         $news = news::create([
-            'Titulo' => $request->titulo,
-            'Conteudo' => $request->conteudo,
-            'Categoria' => $request->categoria,
-            'Autor' => Auth::user()->name,
+            'Titulo' => $request->input('Titulo'),
+            'Conteudo' => $request->input('Conteudo'),
+            'categoria' => $request->input('selected_category'),
+            'autor' => Auth::user()->name,
         ]);
 
-        return redirect()->to('noticias');
+        return redirect()->to('verNoticias');
     }
 
     public function show(news $news)

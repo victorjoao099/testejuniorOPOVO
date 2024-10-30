@@ -20,11 +20,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [funcionario::class, 'destroy'])->name('profile.destroy');
 
 
-    Route::get('noticias', [NewsController::class, 'index']);
+    Route::get('noticias', [NewsController::class, 'index'])->name('verNoticias');
 
-    Route::get('NoticiasCadastro', function() {
-        return view('publicar');
-    });
+    Route::get('cadastro', function() {
+        return view('/News/newnoticia');
+    })->name('cadastro.noticias');
 
     Route::post('NoticiasCadastro', [NewsController::class, 'store'])->name('store.news');
 

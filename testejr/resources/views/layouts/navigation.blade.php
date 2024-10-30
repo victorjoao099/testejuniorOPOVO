@@ -17,8 +17,13 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('verNoticias')" :active="request()->routeIs('verNoticias')">
                         {{ __('Lista de Noticias') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('cadastro.noticias')" :active="request()->routeIs('cadastro.noticias')">
+                        {{ __('Postar Notícias') }}
                     </x-nav-link>
                 </div>
             </div>
