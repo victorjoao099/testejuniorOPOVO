@@ -29,12 +29,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('NoticiasCadastro', [NewsController::class, 'store'])->name('store.news');
 
     Route::get('NoticiasVer', function() {
-        return view('visualizar');
+        return view('/News/showNoticia');
     })->name('view');
 
     Route::get('NoticiasVer/{news}', [NewsController::class, 'show'])->name('view.news');
 
-    Route::get('NoticiasEditar/{news}', [NewsController::class, 'edit'])->name('edit.news');
+    Route::get('NoticiasAtualizar', function() {
+        return view('/News/editNoticia');
+    })->name('update');
 
     Route::get('NoticiasAtualizar/{news}', [NewsController::class, 'update'])->name('update.news');
 

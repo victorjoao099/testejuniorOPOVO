@@ -32,7 +32,7 @@ class NewsController extends Controller
 
     public function show(news $news)
     {
-        return view('show', ['news' => $news]);
+        return view('NoticiasVer', ['news' => $news]);
     }
 
     public function update(StorePost $request, news $news)

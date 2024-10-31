@@ -10,11 +10,16 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @forelse ($noticias as $news)
-        <a href="{{route('newsEdit', ['news' => $news->id])}}"><button>Editar</button></a>
-        <a href="{{route('newsShow', ['news' => $news->id])}}"><button>Visualizar</button></a>
+                    <x-primary-button class="mt-4">
+                        <a href="{{route('update', ['news' => $news->id])}}">Editar</a>
+                    </x-primary-button>
+                    <x-primary-button class="mt-4">
+                        <a href="{{route('view', ['news' => $news->id])}}">Visualizar</a>
+                    </x-primary-button> <br>
         ID: {{ $news->id }}<br>
         Titulo: {{ $news->Titulo }}<br>
         Conteúdo: {{ $news->Conteudo }}<br>
+        Categoria: {{ $news->categoria }}<br>
         Autor: {{ $news->autor }}<br>
         Data: {{ \Carbon\Carbon::parse($news->publicado_em)->tz('America/Sao_Paulo')->format('d/m/Y') }}<br>
         <hr>
