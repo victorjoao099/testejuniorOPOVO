@@ -21,6 +21,12 @@ class StorePost extends FormRequest
      */
     public function rules(): array
     {
+        if($method = 'PUT')
+        return [
+            'Titulo' => 'required|string',
+            'Conteudo' => 'required|string',
+        ];
+
         return [
             'Titulo' => 'required|string',
             'Conteudo' => 'required|string',

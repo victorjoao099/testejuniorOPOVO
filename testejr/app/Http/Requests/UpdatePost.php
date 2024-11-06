@@ -24,8 +24,6 @@ class UpdatePost extends FormRequest
         return [
             'Titulo' => 'required|string',
             'Conteudo' => 'required|string',
-            'categoria' => 'required|string',
-            'autor' => 'required|string',
         ];
     }
 }

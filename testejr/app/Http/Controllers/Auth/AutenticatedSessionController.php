@@ -22,12 +22,12 @@ class AutenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
+        
+        
+        $request->session()->regenerate();
         // dd('a');
 
-        $request->session()->regenerate();
-
-        return Redirect()->intended(route('dashboard', absolute: false));
+        return redirect('dashboard');
     }
 
     public function destroy(Request $request): RedirectResponse

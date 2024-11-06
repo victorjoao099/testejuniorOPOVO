@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="post" action="{{ route('register') }}">
+    <form method="post" action="{{ route('register.user') }}">
         @csrf
 
         <!-- Name -->
@@ -28,7 +28,6 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        <!-- Confirm Password -->
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirme sua senha')" />
 

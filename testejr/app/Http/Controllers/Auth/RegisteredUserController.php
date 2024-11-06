@@ -16,7 +16,7 @@ class RegisteredUserController extends Controller
 {
     public function create(): View
     {
-        return view('/Auth/auth');
+        return view('/Auth/register');
     }
 
     public function store(Request $request): RedirectResponse
@@ -37,6 +37,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('noticias', absolute: false));
+        return redirect(route('verNoticias', absolute: false));
     }
 }

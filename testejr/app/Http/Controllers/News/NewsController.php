@@ -37,7 +37,7 @@ class NewsController extends Controller
         return view('/News/showNoticia', ['news' => $news]);
     }
 
-    public function update(UpdatePost $request, news $news)
+    public function update(StorePost $request, news $news)
     {
 
         $request->validated();

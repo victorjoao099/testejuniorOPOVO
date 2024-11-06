@@ -27,23 +27,22 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|string',
+            'email' => 'required|string|email',
             'password' => 'required|string'
         ];
-        // return[];
-    }
+        }
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
-
+        
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
-
+            
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
             ]);
         }
-
+        
         RateLimiter::clear($this->throttleKey());
     }
     public function ensureIsNotRateLimited(): void
@@ -51,11 +50,12 @@ class LoginRequest extends FormRequest
         if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
             return;
         }
-
+        
+        // dd('Entrando no request');
         event(new Lockout($this));
-
+        
         $seconds = RateLimiter::availableIn($this->throttleKey());
-
+        
         throw ValidationException::withMessages([
             'email' => trans('auth.throttle', [
                 'seconds' => $seconds,
