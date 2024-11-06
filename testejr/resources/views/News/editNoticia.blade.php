@@ -4,7 +4,7 @@
             {{ __('Lista de Noticias Publicadas') }}
         </h2>
     </x-slot>
-    <form action="{{route('update.news',['news' => $news->id])}}" method="POST">
+    <form action="{{route('update.news', ['news' => $news->id])}}" method="POST">
         @csrf
         @Method('PUT')
     
@@ -25,10 +25,18 @@
                             <x-input-label for="Conteudo" :value="__('Conteúdo')" />
                             <x-text-area id="Conteudo" class="block mt-1 w-full" type="text" name="Conteudo" :value="old('Conteudo', $news->Conteudo)" required autofocus autocomplete="Conteudo" />
                         </div>
+                        <div hidden>
+                            <x-input-label for="Categorias" :value="__('Escolha a categoria desta noticia')" />
+                            <x-text-input id="Categorias" class="block mt-1 w-full" type="text" name="categoria" :value="old('Categorias', $news->categoria)" required autofocus readonly autocomplete="categorias" selected />
+                        </div>
+                        <div hidden>
+                            <x-input-label for="autor" :value="__('Autor')" />
+                            <x-text-input id="Autor" class="block mt-1 w-full" type="text" name="autor" :value="old('autor', $news->autor)" required autofocus readonly autocomplete="autor" />
+                        </div>
                         <x-primary-button class="mt-4">
-                            <a href="{{route('update.news', ['news' => $news->id])}}">Atualizar Noticia</a>
+                            Atualizar Noticia
                         </x-primary-button>
-                    </form>
+                </form>
 
                         <form action="{{route('delete.news', ['news' => $news->id])}}" method="POST">
                             @csrf

@@ -29,13 +29,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('NoticiasCadastro', [NewsController::class, 'store'])->name('store.news');
 
-    Route::get('NoticiasVer', function() {
-        return view('/News/showNoticia');
+    Route::get('NoticiasVer', function(news $news) {
+        return view('/News/showNoticia', ['news' => $news]);
     })->name('view');
 
     Route::get('NoticiasVer/{news}', [NewsController::class, 'show'])->name('view.news');
 
-    Route::get('NoticiasEditar{news}', function(news $news) {
+    Route::get('/NoticiasEditar/{news}', function(news $news) {
         return view('/News/editNoticia', ['news' => $news]);
     })->name('update');
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\News;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePost;
+use App\Http\Requests\UpdatePost;
 use App\Models\news;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,6 @@ class NewsController extends Controller
 
     public function store(StorePost $request)
     {
-
         $news = news::create([
             'Titulo' => $request->input('Titulo'),
             'Conteudo' => $request->input('Conteudo'),
@@ -27,21 +27,26 @@ class NewsController extends Controller
             'autor' => Auth::user()->name,
         ]);
 
-        return redirect()->to('verNoticias');
+        return redirect()->to('cadastro.noticias');
     }
 
     public function show(news $news)
     {
-        return view('NoticiasVer', ['news' => $news]);
+
+        // dd($news->Titulo);
+        return view('/News/showNoticia', ['news' => $news]);
     }
 
-    public function update(StorePost $request, news $news)
+    public function update(UpdatePost $request, news $news)
     {
+
         $request->validated();
 
         $news->update([
             'Titulo' => $request->Titulo,
             'Conteudo' => $request->Conteudo,
+            'categoria' => $news->categoria,
+            'autor' => Auth::user()->name,
         ]);
 
         return redirect()->route('verNoticias', ['news' => $news->id])->with('success', 'Noticia editada com sucesso');

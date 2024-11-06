@@ -26,7 +26,11 @@
                         </div>
                         <div>
                             <x-input-label for="Categorias" :value="__('Escolha a categoria desta noticia')" />
-                            <x-category-card id="Categorias" name="Categorias" :categories="['Política', 'Esportes', 'Tecnologia', 'Entretenimento', 'Saúde']" />
+                            <x-category-card id="Categorias" name="Categoria" :categories="['Política', 'Esportes', 'Tecnologia', 'Entretenimento', 'Saúde']" selected />
+                        </div>
+                        <div hidden>
+                            <x-input-label for="autor" :value="__('Autor')" />
+                            <x-text-input id="Autor" class="block mt-1 w-full" type="text" name="autor" :value="Auth::user()->name" required autofocus readonly autocomplete="autor" />
                         </div>
                         <x-primary-button class="mt-4">
                             {{ __('Enviar') }}

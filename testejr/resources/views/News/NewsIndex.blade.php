@@ -14,7 +14,7 @@
                         <a href="{{route('update', ['news' => $news->id])}}">Editar</a>
                     </x-primary-button>
                     <x-primary-button class="mt-4">
-                        <a href="{{route('view', ['news' => $news->id])}}">Visualizar</a>
+                        <a href="{{route('view.news', ['news' => $news->id])}}">Visualizar</a>
                     </x-primary-button> <br>
         ID: {{ $news->id }}<br>
         Titulo: {{ $news->Titulo }}<br>
