@@ -22,7 +22,10 @@ class StorePost extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'Titulo' => 'required|string',
+            'Conteudo' => 'required|string',
+            'categoria' => 'required|string',
+            'autor' => 'required|string',
         ];
     }
 }
