@@ -40,17 +40,17 @@ class NewsController extends Controller
         $request->validated();
 
         $news->update([
-            'Titulo' => $request->titulo,
-            'Conteudo' => $request->conteudo,
+            'Titulo' => $request->Titulo,
+            'Conteudo' => $request->Conteudo,
         ]);
 
-        return redirect()->route('showNews', ['news' => $news->id])->with('success', 'Noticia editada com sucesso');
+        return redirect()->route('verNoticias', ['news' => $news->id])->with('success', 'Noticia editada com sucesso');
     }
 
     public function destroy(news $news)
     {
         $news->delete();
 
-        return redirect()->route('noticias')->with('success', 'Noticia Apaga com sucesso');
+        return redirect()->route('verNoticias')->with('success', 'Noticia Apaga com sucesso');
     }
 }

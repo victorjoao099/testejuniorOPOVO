@@ -14,7 +14,7 @@ class AutenticatedSessionController extends Controller
 {
     public function create(): View
     {
-        return view('auth.login');
+        return view('Auth/login');
     }
 
     // Lidando com uma requisição recebida
@@ -23,9 +23,11 @@ class AutenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        // dd('a');
+
         $request->session()->regenerate();
 
-        return Redirect()->intended(route('newsIndex', absolute: false));
+        return Redirect()->intended(route('dashboard', absolute: false));
     }
 
     public function destroy(Request $request): RedirectResponse

@@ -1,17 +1,18 @@
 <?php
 
+use App\Http\Controllers\details;
 use App\Http\Controllers\funcionario;
 use App\Http\Controllers\News\NewsController;
 use App\Http\Controllers\ProfileController;
+use App\Models\news;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [details::class, 'show'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     //Área para a criação, edição e destruição de contas
@@ -34,13 +35,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('NoticiasVer/{news}', [NewsController::class, 'show'])->name('view.news');
 
-    Route::get('NoticiasAtualizar', function() {
-        return view('/News/editNoticia');
+    Route::get('NoticiasEditar{news}', function(news $news) {
+        return view('/News/editNoticia', ['news' => $news]);
     })->name('update');
 
-    Route::get('NoticiasAtualizar/{news}', [NewsController::class, 'update'])->name('update.news');
+    Route::put('NoticiasAtualizar/{news}', [NewsController::class, 'update'])->name('update.news');
 
-    Route::get('NoticiasApagar/{news}', [NewsController::class, 'destroy'])->name('destroy.name');
+    Route::delete('NoticiasApagar/{news}', [NewsController::class, 'destroy'])->name('delete.news');
 });
 
 require base_path('routes/auth.php');

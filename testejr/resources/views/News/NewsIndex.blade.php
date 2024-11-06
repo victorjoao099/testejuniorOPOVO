@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @forelse ($noticias as $news)
-                    <x-primary-button class="mt-4">
+                    <x-terciary-buttom   class="mt-4">
                         <a href="{{route('update', ['news' => $news->id])}}">Editar</a>
                     </x-primary-button>
                     <x-primary-button class="mt-4">

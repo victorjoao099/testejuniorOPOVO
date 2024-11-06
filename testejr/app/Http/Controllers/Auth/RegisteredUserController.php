@@ -16,7 +16,7 @@ class RegisteredUserController extends Controller
 {
     public function create(): View
     {
-        return view('auth.register');
+        return view('/Auth/auth');
     }
 
     public function store(Request $request): RedirectResponse

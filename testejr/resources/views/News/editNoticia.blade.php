@@ -4,7 +4,7 @@
             {{ __('Lista de Noticias Publicadas') }}
         </h2>
     </x-slot>
-    <form action="{{route('store.news',['news' => $news->id])}}" method="POST">
+    <form action="{{route('update.news',['news' => $news->id])}}" method="POST">
         @csrf
         @Method('PUT')
     
@@ -26,11 +26,19 @@
                             <x-text-area id="Conteudo" class="block mt-1 w-full" type="text" name="Conteudo" :value="old('Conteudo', $news->Conteudo)" required autofocus autocomplete="Conteudo" />
                         </div>
                         <x-primary-button class="mt-4">
-                            {{-- <a href="{{route('update.news', ['news' => $news->id])}}">Atualizar Noticia</a> --}}
+                            <a href="{{route('update.news', ['news' => $news->id])}}">Atualizar Noticia</a>
                         </x-primary-button>
+                    </form>
+
+                        <form action="{{route('delete.news', ['news' => $news->id])}}" method="POST">
+                            @csrf
+                            @method('delete')    
+                                <x-primary-button class="mt-4">
+                                    Excluir Noticia
+                                </x-primary-button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
 </x-app-layout>
