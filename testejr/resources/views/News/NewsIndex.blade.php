@@ -15,13 +15,12 @@
                     </x-primary-button>
                     <x-primary-button class="mt-4">
                         <a href="{{route('view.news', ['news' => $news->id])}}">Visualizar</a>
-                    </x-primary-button> <br>
-        ID: {{ $news->id }}<br>
-        Titulo: {{ $news->Titulo }}<br>
-        Conteúdo: {{ $news->Conteudo }}<br>
-        Categoria: {{ $news->categoria }}<br>
-        Autor: {{ $news->autor }}<br>
-        Data: {{ \Carbon\Carbon::parse($news->publicado_em)->tz('America/Sao_Paulo')->format('d/m/Y') }}<br>
+                    </x-primary-button> <br>    
+                        Titulo: {{ $news->Titulo }}<br>
+                        Conteúdo: {{ $news->Conteudo }}<br>
+                        Categoria: {{ $news->categoria }}<br>
+                        Autor: {{ $news->autor }}<br>
+                        Data: {{ \Carbon\Carbon::parse($news->publicado_em)->tz('America/Sao_Paulo')->format('d/m/Y') }}<br>
         <hr>
 
     @empty

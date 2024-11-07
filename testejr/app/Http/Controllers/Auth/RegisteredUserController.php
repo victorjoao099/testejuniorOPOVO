@@ -37,6 +37,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('verNoticias', absolute: false));
+        return redirect(route('verNoticias'));
     }
 }
