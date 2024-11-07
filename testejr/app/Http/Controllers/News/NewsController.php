@@ -4,39 +4,60 @@ namespace App\Http\Controllers\News;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePost;
-use App\Models\news;
+use App\Models\funcionario;
+use App\Models\News;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class NewsController extends Controller
 {
-    public function index()
+    public function index(News $news, Request $request)
     {
-        $noticias = news::orderbyDesc('id')->get();
+        // $id = $news->id_autor;
 
-        return view('/News/NewsIndex', ['noticias' => $noticias]);
+        // $user = User::find($id);
+
+        // $nome = $user->name;
+
+        // $name = collect($nome);
+
+        $noticias = News::getNewsUser(Auth::user()->id);
+
+        return view('/News/NewsIndex', compact('noticias'));
     }
 
-    public function store(StorePost $request)
+    public function store(StorePost $request, funcionario $funcionario)
     {
-        $news = news::create([
-            'Titulo' => $request->input('Titulo'),
-            'Conteudo' => $request->input('Conteudo'),
-            'categoria' => $request->input('selected_category'),
-            'autor' => Auth::user()->name,
-        ]);
+            // dd(Auth::id());
+            $news = news::create([
+                'Titulo' => $request->input('Titulo'),
+                'Conteudo' => $request->input('Conteudo'),
+                'categoria' => $request->input('selected_category'),
+                'id_autor' => Auth::id(),
+            ]);
+            
 
         return redirect()->route('verNoticias');
     }
 
-    public function show(news $news)
+    public function show(News $news, Request $request)
     {
 
         // dd($news->Titulo);
-        return view('/News/showNoticia', ['news' => $news]);
+        $id = $news->id_autor;
+
+        $user = User::find($id);
+
+        $nome = $user->name;
+
+        $name = collect($nome);
+        // dd($nome);
+        return view('/News/showNoticia',['name' => $name], ['news' => $news], ['request' => $request]);
     }
 
-    public function update(StorePost $request, news $news)
+    public function update(StorePost $request, News $news)
     {
 
         $request->validated();
@@ -49,7 +70,7 @@ class NewsController extends Controller
         return redirect()->route('verNoticias', ['news' => $news->id])->with('success', 'Noticia editada com sucesso');
     }
 
-    public function destroy(news $news)
+    public function destroy(News $news)
     {
         $news->delete();
 

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('Titulo', 500);
             $table->string('Conteudo', 1000);
             $table->string('categoria', 100);
-            $table->string('autor', 250);
+            $table->string('id_autor', 65);
             $table->timestamp('publicado_em');
         });
     }

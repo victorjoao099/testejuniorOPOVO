@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class news extends Model
+class News extends Model
 {
     use HasFactory;
 
@@ -16,8 +16,19 @@ class news extends Model
     protected $fillable = [
         'Titulo',
         'Conteudo',
-        'autor',
+        'id_autor',
         'categoria',
         'Publicado_em'
     ];
+
+    public static function getNewsUser(int $user)
+    {
+        $data = News::select('news.*', 'users.name as name_autor')
+        ->where('id_autor', $user)
+        ->join('users', 'news.id_autor', '=', 'users.id')
+        ->orderbyDesc('news.id')
+        ->get();
+
+        return $data;
+    }
 }

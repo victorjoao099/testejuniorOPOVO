@@ -12,7 +12,11 @@
                         Titulo: {{ $news->Titulo }}<br>
                         Conteúdo: {{ $news->Conteudo }}<br>
                         Categoria: {{ $news->categoria }}<br>
-                        Autor: {{ $news->autor }}<br>
+                        @forelse ($name as $nome)
+                        
+                        Autor: {{ $nome}}<br>
+                        @empty
+                        @endforelse
                         Data: {{ \Carbon\Carbon::parse($news->publicado_em)->tz('America/Sao_Paulo')->format('d/m/Y') }}<br>
                 </div>
             </div>

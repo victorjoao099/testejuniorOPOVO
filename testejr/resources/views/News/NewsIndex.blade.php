@@ -19,7 +19,7 @@
                         Titulo: {{ $news->Titulo }}<br>
                         Conteúdo: {{ $news->Conteudo }}<br>
                         Categoria: {{ $news->categoria }}<br>
-                        Autor: {{ $news->autor }}<br>
+                        Autor: {{$news->name_autor }}<br>
                         Data: {{ \Carbon\Carbon::parse($news->publicado_em)->tz('America/Sao_Paulo')->format('d/m/Y') }}<br>
         <hr>
 
