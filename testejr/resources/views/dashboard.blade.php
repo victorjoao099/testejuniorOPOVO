@@ -20,41 +20,69 @@
         
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
-        const ctx = document.getElementById('grafico');
+        // const ctx = document.getElementById('grafico');
 
         function gerarListaDeDatas() {
         const listaDeDatas = [];
         const dataAtual = new Date();
 
-        for (let i = 0; i < 7; i++) { // Aqui você define o número de datas que deseja gerar
+        for (let i = 14; i >= 0; i--) { 
             const data = new Date(dataAtual);
-            data.setDate(data.getDate() - (i * 1)); // Subtrai i semanas da data atual
-            listaDeDatas.push(data.toLocaleDateString()); // Adiciona a data formatada na lista
+            data.setDate(data.getDate() - (i * 1));
+            listaDeDatas.push(data.toLocaleDateString());
         }
 
   return listaDeDatas;
+
 }
-
-console.log(...gerarListaDeDatas());
-
-        new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: [...gerarListaDeDatas()],
-            datasets: [{
-              label: 'Número de Noticias publicadas por dia',
-              data: [1, 2, 3, 4, 5],
-              borderWidth: 2
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
+$.ajax({
+  url: '/details/adicoesPorDia',
+  type: 'GET',
+  success: function(response) {
+    // Estrutura de dados para o gráfico
+    const labels = Object.keys(response); // as datas (chaves)
+    const data = Object.values(response);  // as contagens (valores)
+    
+    console.log(data)
+    // Criar o gráfico com os dados
+    const ctx = document.getElementById('grafico');
+    const myChart = new Chart(ctx, {
+      type: 'line',  // tipo do gráfico (pode ser 'bar' para barras)
+      data: {
+        labels: [...gerarListaDeDatas()],  // labels no eixo X (datas)
+        datasets: [{
+          label: 'Número de noticias postadas por dia',
+          data: data,  // valores das adições por dia
+          fill: true,  // não preencher área sob a linha
+          borderColor: 'rgba(75, 192, 192, 1)',  // cor da linha
+          tension: 0.1   // suavização da linha
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Datas'
             }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Número de Noticias Postadas'
+            },
+            beginAtZero: true  // faz o gráfico começar no 0
           }
-        });
-      </script>
+        }
+      }
+                });
+              },
+              error: function(xhr) {
+                console.error('Erro ao buscar dados para o gráfico');
+              }
+            });
+            </script>
 </x-app-layout>

@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard', [details::class, 'show'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function () {
+
+    Route::get('/details/adicoesPorDia', [details::class, 'adicoesPorDia'])->name('adicoesPorDia');
     //Área para a criação, edição e destruição de contas
     Route::get('/profile', [funcionario::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [funcionario::class, 'update'])->name('profile.update');
