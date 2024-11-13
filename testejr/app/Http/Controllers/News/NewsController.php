@@ -15,14 +15,6 @@ class NewsController extends Controller
 {
     public function index(News $news, Request $request)
     {
-        // $id = $news->id_autor;
-
-        // $user = User::find($id);
-
-        // $nome = $user->name;
-
-        // $name = collect($nome);
-
         $noticias = News::getNewsUser(Auth::user()->id);
 
         return view('/News/NewsIndex', compact('noticias'));

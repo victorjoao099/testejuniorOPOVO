@@ -53,7 +53,7 @@ $.ajax({
       data: {
         labels: [...gerarListaDeDatas()],  // labels no eixo X (datas)
         datasets: [{
-          label: 'Número de noticias postadas por dia',
+          label: 'Número de noticias postadas no dia',
           data: data,  // valores das adições por dia
           fill: true,  // não preencher área sob a linha
           borderColor: 'rgba(75, 192, 192, 1)',  // cor da linha

@@ -18,7 +18,7 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('verNoticias')" :active="request()->routeIs('verNoticias')">
-                        {{ __('Lista de Noticias') }}
+                        {{ __('Minhas Noticias') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -93,8 +93,17 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    {{ __('Perfil') }}
                 </x-responsive-nav-link>
+                <div class="mt-3 space-y-1">
+                    <x-responsive-nav-link :href="route('verNoticias')">
+                        {{ __('Minhas noticias') }}
+                    </x-responsive-nav-link>
+                    <div class="mt-3 space-y-1">
+                        <x-responsive-nav-link :href="route('cadastro.noticias')">
+                            {{ __('Publicar Noticia') }}
+                        </x-responsive-nav-link>
+                    
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout.user') }}">
@@ -103,7 +112,7 @@
                     <x-responsive-nav-link :href="route('logout.user')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('Sair') }}
                     </x-responsive-nav-link>
                 </form>
             </div>
