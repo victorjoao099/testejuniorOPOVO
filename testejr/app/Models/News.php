@@ -20,7 +20,8 @@ class News extends Model
         'Conteudo',
         'id_autor',
         'categoria',
-        'Publicado_em'
+        'Publicado_em',
+        'image'
     ];
 
     public static function getNewsUser(int $user)

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('Conteudo', 16383);
             $table->string('categoria', 100);
             $table->string('id_autor', 65);
+            $table->string('image', 90);
             $table->timestamp('publicado_em');
         });
     }

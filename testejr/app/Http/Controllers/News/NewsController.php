@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\News;
 
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePost;
-use App\Models\funcionario;
 use App\Models\News;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
+
 
 class NewsController extends Controller
 {
@@ -20,15 +20,29 @@ class NewsController extends Controller
         return view('/News/NewsIndex', compact('noticias'));
     }
 
-    public function store(StorePost $request, funcionario $funcionario)
+    public function store(StorePost $request)
     {
-            // dd(Auth::id());
+
+        $image = $request->file('file');
+        $imageName = upload($image, 'images');
+        dd($image);
+        
+
+
+        try {
             $news = news::create([
                 'Titulo' => $request->input('Titulo'),
                 'Conteudo' => $request->input('Conteudo'),
                 'categoria' => $request->input('selected_category'),
                 'id_autor' => Auth::id(),
+                'filepold' => $imageName
             ]);
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+
+
+
             
 
         return redirect()->route('verNoticias');
