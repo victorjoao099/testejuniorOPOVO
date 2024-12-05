@@ -13,7 +13,7 @@ Route::get('/dashboard', [details::class, 'show'])->middleware(['auth', 'verifie
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/details/adicoesPorDia', [details::class, 'adicoesPorDia'])->name('adicoesPorDia');
-    //Área para a criação, edição e destruição de contas
+    //Área para a criação, edição e para apagar contas
     Route::get('/profile', [funcionario::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [funcionario::class, 'update'])->name('profile.update');
     Route::delete('/profile', [funcionario::class, 'destroy'])->name('profile.destroy');
