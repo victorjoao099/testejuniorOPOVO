@@ -23,9 +23,9 @@ class NewsController extends Controller
     public function store(StorePost $request)
     {
 
-        $image = $request->file('file');
+        $image = $request->file('image');
         $imageName = upload($image, 'images');
-        dd($image);
+        // dd($image);
         
 
 
@@ -35,7 +35,7 @@ class NewsController extends Controller
                 'Conteudo' => $request->input('Conteudo'),
                 'categoria' => $request->input('selected_category'),
                 'id_autor' => Auth::id(),
-                'filepold' => $imageName
+                'image' => $imageName
             ]);
         } catch (\Exception $e) {
             dd($e->getMessage());

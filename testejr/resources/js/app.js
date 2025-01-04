@@ -6,15 +6,20 @@ import * as FilePond from 'filepond';    // Para o JS
 
 document.addEventListener('DOMContentLoaded', function () {
     FilePond.create(document.querySelector('input[type="file"]'));
-})
+});
 FilePond.create(document.querySelector('input[type="file"]'), {
     server: {
-        url: '/NoticiasCadastro',  // A URL para onde o arquivo será enviado
-        instantUpload: false,
+        url: 'NoticiasCadastro',  // A URL para onde o arquivo será enviado
+        // instantUpload: false,
         allowRemove: false,
-        withCredentials: true,
+        withCredentials: true,	
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         },
     }
-});;
+});
+FilePond.registerPlugin(
+    FilePondPluginImagePreview,
+    FilePondPluginImageExifOrientation,
+    FilePondPluginFileValidateSize,
+);

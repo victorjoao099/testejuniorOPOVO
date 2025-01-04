@@ -25,7 +25,7 @@
                             <x-text-area id="Conteudo" class="block mt-1 w-full" type="text" name="Conteudo" :value="old('Conteudo')" required autofocus autocomplete="Conteudo" />
                         </div>
                         <div class="image">
-                                <input type="file" name="filepond" class="filepond" id="image" type="image" accept=".jpeg, .png, .jpg, .gif" multiple data-max-file-size="3MB"
+                                <input type="file" name="image" class="image" id="image" type="image" accept=".jpeg, .png, .jpg, .gif" multiple data-max-file-size="5MB"
                                 data-max-files="3">
                         </div>
                         <div>
